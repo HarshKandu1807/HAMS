@@ -3,6 +3,7 @@ using MimeKit;
 using Microsoft.Extensions.Options;
 using Hospital_Management.Models;
 using Hospital_Management.Services.Iservice;
+using System.Text;
 
 public class EmailService : Iemail
 {
@@ -37,7 +38,7 @@ public class EmailService : Iemail
 
         using var smtp = new SmtpClient();
         await smtp.ConnectAsync(_emailSettings.SmtpServer, _emailSettings.Port, MailKit.Security.SecureSocketOptions.StartTls);
-        await smtp.AuthenticateAsync(_emailSettings.SenderEmail, _emailSettings.Password);
+        await smtp.AuthenticateAsync(_emailSettings.SenderEmail, Encoding.UTF8.GetString(Convert.FromBase64String(_emailSettings.Password)));
         await smtp.SendAsync(email);
         await smtp.DisconnectAsync(true);
     }

@@ -139,35 +139,6 @@ namespace Hospital_Management.Services
             return "Appointment Created Successfully.";
         }
 
-        //public async Task<bool> AddAppointment(AppointmentDTO appointmentDTO)
-        //{
-        //    var check = await context.Appointments.AnyAsync(a => a.DoctorId == appointmentDTO.DoctorId &&
-        //                                                         a.AppointmentDate == appointmentDTO.AppointmentDate && 
-        //                                                         a.Status == AppointmentStatus.Scheduled);
-        //    if (check)
-        //    {
-        //        return false;
-        //    }
-        //    var data = new Appointment
-        //    {
-        //        AppointmentDate = appointmentDTO.AppointmentDate,
-        //        ModifiedDate=appointmentDTO.AppointmentDate,
-        //        PatientId=appointmentDTO.PatientId,
-        //        DoctorId=appointmentDTO.DoctorId,
-        //        Status=AppointmentStatus.Scheduled,
-        //        Notes=appointmentDTO.Notes
-        //    };
-        //    await context.AddAsync(data);
-        //    await context.SaveChangesAsync();
-        //    await iemail.SendAppointmentEmailAsync(
-        //        patient.Email,
-        //        patient.Name,
-        //        appointmentDTO.AppointmentDate,
-        //        doctor.Name
-        //    );
-        //    return "Appointment Created Successfully.";
-        //}
-
         public async Task<string> UpdateAppointment(UpdateAppointmentDTO appointmentDTO, int id)
         {
             var check = await context.Appointments.AnyAsync(a => a.DoctorId == appointmentDTO.DoctorId &&
@@ -212,16 +183,6 @@ namespace Hospital_Management.Services
             );
             return "Appointment Rescheduled Successfully";
         }
-
-        //public async Task<bool> UpdateAppointment(UpdateAppointmentDTO appointmentDTO, int id)
-        //{
-        //    var data = await context.Appointments.FindAsync(id);
-        //    if (data == null)
-        //    {
-        //        return false;
-        //    }
-            
-        //}
 
         public async Task<bool> DeleteAppointment(int id)
         {
